@@ -13,6 +13,12 @@ async function handleRequest(request) {
   let targetUrl;
   let customSuffix;
 
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*', // 允许任意来源（你可以替换为指定的域名以限制来源）
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // 允许的方法
+    'Access-Control-Allow-Headers': 'Content-Type', // 允许的自定义头部
+    'Content-Type': 'application/json' // 默认的响应类型
+};
   // 检查是否设置了 LINKS 环境变量
   if (typeof LINKS === 'undefined' || !LINKS) {
     return new Response(JSON.stringify({
@@ -20,7 +26,7 @@ async function handleRequest(request) {
       Message: '请去Workers控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers:  corsHeaders 
     });
   }
 
@@ -41,7 +47,7 @@ async function handleRequest(request) {
       Message: 'failed to get long URL, please check the short URL if exists or expired' 
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: corsHeaders
     });
   }
 
@@ -54,7 +60,7 @@ async function handleRequest(request) {
       Message: 'failed to decode long URL, please check if it is properly encoded' 
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: corsHeaders
     });
   }
 
@@ -72,7 +78,7 @@ async function handleRequest(request) {
       Message: 'short key already exists, please use another one or leave it empty to generate automatically.'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: corsHeaders
     });
   }
 
@@ -87,7 +93,7 @@ async function handleRequest(request) {
     ShortUrl: shortLink
   }), {
     status: 200,
-    headers: { 'Content-Type': 'application/json' }
+    headers: corsHeaders
   });
 }
 
@@ -95,6 +101,12 @@ async function handleRedirect(request) {
   const url = new URL(request.url);
   const suffix = url.pathname.split('/')[1];  // 获取短链接的后缀
 
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*', // 允许任意来源（你可以替换为指定的域名以限制来源）
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // 允许的方法
+    'Access-Control-Allow-Headers': 'Content-Type', // 允许的自定义头部
+    'Content-Type': 'application/json' // 默认的响应类型
+};
   // 检查是否设置了 LINKS 环境变量
   if (typeof LINKS === 'undefined' || !LINKS) {
     return new Response(JSON.stringify({
@@ -102,7 +114,7 @@ async function handleRedirect(request) {
       Message: '请去Workers控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
     }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: corsHeaders
     });
   }
 

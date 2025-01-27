@@ -121,7 +121,7 @@ addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.pathname === '/') {
     // 根路径的请求
-    event.respondWith(fetch(new Request('https://kiko923.github.io/MyUrls/public/')));
+    event.respondWith(fetch(new Request('https://kiko923.github.io/MyUrls-Workers/')));
   } else if (url.pathname === '/short') {
     // 创建短链接
     event.respondWith(handleRequest(event.request));

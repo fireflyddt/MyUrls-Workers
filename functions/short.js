@@ -2,19 +2,35 @@ export async function onRequest(context) {
     const { request, env } = context;
     const kv = env.LINKS;
 
+    // CORS 头部配置
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*', // 允许任意来源（你可以替换为指定的域名以限制来源）
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // 允许的方法
+        'Access-Control-Allow-Headers': 'Content-Type', // 允许的自定义头部
+        'Content-Type': 'application/json' // 默认的响应类型
+    };
+
     // 检查 kv 是否有值
     if (!kv) {
-      return new Response(JSON.stringify({
-        Code: 201,
-        Message: '请去Pages控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
+        return new Response(JSON.stringify({
+            Code: 201,
+            Message: '请去Pages控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
+        }), {
+            status: 200,
+            headers: corsHeaders
+        });
     }
 
     const method = request.method;
     let longUrl, shortKey;
+
+    // 处理 OPTIONS 请求（CORS 预检请求）
+    if (method === "OPTIONS") {
+        return new Response(null, {
+            status: 204, // 无内容
+            headers: corsHeaders
+        });
+    }
 
     // 处理 GET 请求
     if (method === "GET") {
@@ -28,7 +44,7 @@ export async function onRequest(context) {
                 Message: "No longUrl provided"
             }), {
                 status: 200,
-                headers: { "Content-Type": "application/json" }
+                headers: corsHeaders
             });
         }
 
@@ -40,7 +56,7 @@ export async function onRequest(context) {
                 Message: "Invalid Base64 encoding for longUrl"
             }), {
                 status: 200,
-                headers: { "Content-Type": "application/json" }
+                headers: corsHeaders
             });
         }
 
@@ -59,7 +75,7 @@ export async function onRequest(context) {
                 Message: "No longUrl provided"
             }), {
                 status: 200,
-                headers: { "Content-Type": "application/json" }
+                headers: corsHeaders
             });
         }
 
@@ -71,7 +87,7 @@ export async function onRequest(context) {
                 Message: "Invalid Base64 encoding for longUrl"
             }), {
                 status: 200,
-                headers: { "Content-Type": "application/json" }
+                headers: corsHeaders
             });
         }
 
@@ -84,7 +100,7 @@ export async function onRequest(context) {
         Message: "Method not allowed"
     }), {
         status: 405,
-        headers: { "Content-Type": "application/json" }
+        headers: corsHeaders
     });
 
     /**
@@ -99,7 +115,7 @@ export async function onRequest(context) {
                     Message: `The custom shortKey \"${shortKey}\" already exists.`
                 }), {
                     status: 200,
-                    headers: { "Content-Type": "application/json" }
+                    headers: corsHeaders
                 });
             }
         } else {
@@ -116,7 +132,7 @@ export async function onRequest(context) {
             ShortKey: shortKey
         }), {
             status: 200,
-            headers: { "Content-Type": "application/json" }
+            headers: corsHeaders
         });
     }
 

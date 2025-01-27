@@ -1,7 +1,8 @@
 # MyUrls-Workers
 
-CareyWang/MyUrls 短链接 Cloudflare Pages 版本
-支持 订阅转换前端 [CareyWang/sub-web](https://github.com/CareyWang/sub-web) 调用
+ [CareyWang/MyUrls](https://github.com/CareyWang/MyUrls) 短链接 Cloudflare Workers & Cloudflare Pages 版本
+
+支持 **订阅转换前端** [CareyWang/sub-web](https://github.com/CareyWang/sub-web) 使用
 
 ## 技术栈
 

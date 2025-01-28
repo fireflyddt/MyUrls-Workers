@@ -32,8 +32,8 @@
     - 输出目录：/
   
   3. 创建 KV 命名空间
-
-  ![e2a62cb147dedf73f76b3d42b3357df](https://github.com/user-attachments/assets/48079ebe-036b-49cc-9d32-c2bf83511c67)
+  
+  ![1738067979664](https://github.com/user-attachments/assets/ae96e948-0148-4bd6-bb19-4a0a53b6f229)
   ![e16e83362b97668fba0d9ec1e100585](https://github.com/user-attachments/assets/2f9ddec3-6ad0-4a11-a1b7-d2c5287ecfb6)
 
   - 在 Cloudflare 控制台创建 KV 命名空间，命名为 "`LINKS`"
@@ -51,7 +51,7 @@
   2. 复制全部内容
   3. 创建 Cloudflare Workers 点击 编辑代码 粘贴至代码框内 创建 KV 命名空间
   
-  ![e2a62cb147dedf73f76b3d42b3357df](https://github.com/user-attachments/assets/48079ebe-036b-49cc-9d32-c2bf83511c67)
+  ![1738067979664](https://github.com/user-attachments/assets/f15ed931-5428-4e0c-97eb-0059f106f40f)
   ![e16e83362b97668fba0d9ec1e100585](https://github.com/user-attachments/assets/2f9ddec3-6ad0-4a11-a1b7-d2c5287ecfb6)
   - 在 Cloudflare 控制台创建 KV 命名空间，命名为 "`LINKS`"
   - 在 Workers 项目设置中绑定 KV：

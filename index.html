@@ -29,7 +29,7 @@
       <el-header></el-header>
       <el-main>
         <div :class="[isPc ? 'body-center body-width-pc' : 'body-center body-width-mb']">
-          <img width="300" src="https://cdn.mesier.cc/img/logo.svg" @click="goToGayHub">
+          <img width="150" src="https://cdn.mesier.cc/img/logo.svg" @click="goToGayHub">
           <el-input ref="long" v-model="longUrl" size="medium" @keyup.enter.native="enterToDoShort">
             <el-button slot="append" icon="el-icon-magic-stick" @click="doShort" :loading="loading"></el-button>
           </el-input>
